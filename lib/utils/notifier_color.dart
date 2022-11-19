@@ -1,35 +1,48 @@
 import 'package:flutter/cupertino.dart';
+import 'package:injectable/injectable.dart';
+import 'package:mobyte_scbteamchallenge/utils/app_colors.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'colors.dart';
-
+@injectable
 class ColorNotifier with ChangeNotifier {
+
+  final SharedPreferences _pref;
+
+  ColorNotifier(this._pref) {
+    isDark = _pref.getBool("isDarkTheme") ?? false;
+  }
+
   bool isDark = false;
 
-  set setIsDark(v) {
-    isDark = v;
+  void setIsDark(bool dark) {
+    isDark = dark;
+    _pref.setBool("isDarkTheme", dark);
     notifyListeners();
   }
 
-  get getIsDark => isDark;
+  get white => isDark ? AppColors.darkwhite : AppColors.white;
 
-  get getwihitecolor => isDark ? darkwihitecolor : wihitecolor;
+  get blue => isDark ? AppColors.blue : AppColors.darkblue;
 
-  get getbluecolor => isDark ? blue : darkblue;
+  get grey => isDark ? AppColors.grey : AppColors.darkgrey;
 
-  get getgrey => isDark ? grey : darkgrey;
+  get black => isDark ? AppColors.black : AppColors.darkblack;
 
-  get getblck => isDark ? blck : darkblck;
+  get pinAuth => isDark ? AppColors.pinauth : AppColors.darkpinauth;
 
-  get getpinauth => isDark ? pinauth : darkpinauth;
+  get investmentBlue => isDark ? AppColors.investmentcolor : AppColors.darkInvestmentcolor;
 
-  get getInvestmentbluecolor => isDark ? investmentcolor : darkInvestmentcolor;
+  get confirmStockBuy =>
+      isDark ? AppColors.darkconcirmstockbuycolor : AppColors.concirmstockbuycolor;
 
-  get getconcirmstockbuycolor =>
-      isDark ? darkconcirmstockbuycolor : concirmstockbuycolor;
+  get prefixIcon => isDark ? AppColors.prefixicon : AppColors.darkprefixicon;
 
-  get getprefixicon => isDark ? prefixicon : darkprefixicon;
+  get identifyMethod => isDark ? AppColors.darkidentyfiymethod : AppColors.identyfiymethod;
 
-  get getidentyfiymethod => isDark ? darkidentyfiymethod : identyfiymethod;
+  get favorites => isDark ? AppColors.darkfavorites : AppColors.favorites;
+}
 
-  get getfavorites => isDark ? darkfavorites : favorites;
+extension ColorExt on BuildContext {
+  ColorNotifier get colors => Provider.of<ColorNotifier>(this, listen: true);
 }

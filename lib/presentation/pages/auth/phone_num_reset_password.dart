@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:gocrypto/Custom_BlocObserver/button/custtom_button.dart';
-import 'package:gocrypto/Custom_BlocObserver/notifire_clor.dart';
-import 'package:gocrypto/screens/Auth/vericication.dart';
-import 'package:gocrypto/utils/enstring.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../Custom_BlocObserver/Custtom_app_bar/custtomappbar.dart';
-import '../../utils/medeiaqury/medeiaqury.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/auth/vericication.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/custom_appbar.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/custtom_button.dart';
+import 'package:mobyte_scbteamchallenge/utils/enstring.dart';
+import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
+import 'package:mobyte_scbteamchallenge/utils/sizes.dart';
 
 class PhoneNumResetPassword extends StatefulWidget {
   const PhoneNumResetPassword({Key? key}) : super(key: key);
@@ -19,24 +16,6 @@ class PhoneNumResetPassword extends StatefulWidget {
 }
 
 class _PhoneNumResetPasswordState extends State<PhoneNumResetPassword> {
-  late ColorNotifier notifier;
-
-  getdarkmodepreviousstate() async {
-    final prefs = await SharedPreferences.getInstance();
-    bool? previusstate = prefs.getBool("setIsDark");
-    if (previusstate == null) {
-      notifier.setIsDark = false;
-    } else {
-      notifier.setIsDark = previusstate;
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getdarkmodepreviousstate();
-  }
-
   String dropdownvalue = '+91';
 
   // List of items in our dropdown menu
@@ -50,16 +29,15 @@ class _PhoneNumResetPasswordState extends State<PhoneNumResetPassword> {
 
   @override
   Widget build(BuildContext context) {
-    notifier = Provider.of<ColorNotifier>(context, listen: true);
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
     return ScreenUtilInit(
-      builder: () => Scaffold(
-        backgroundColor: notifier.getwihitecolor,
+      builder: (_, __) => Scaffold(
+        backgroundColor: context.colors.white,
         appBar: CustomAppBar(
-          notifier.getwihitecolor,
+          context.colors.white,
           "",
-          notifier.getblck,
+          context.colors.black,
           height: height / 15,
         ),
         body: SingleChildScrollView(
@@ -75,7 +53,7 @@ class _PhoneNumResetPasswordState extends State<PhoneNumResetPassword> {
                       Text(
                         LanguageEn.setupsecondstep,
                         style: TextStyle(
-                            color: notifier.getblck,
+                            color: context.colors.black,
                             fontSize: 24.sp,
                             fontFamily: 'Gilroy_Bold'),
                       ),
@@ -83,7 +61,7 @@ class _PhoneNumResetPasswordState extends State<PhoneNumResetPassword> {
                       Text(
                         LanguageEn.enteryourphonenumber,
                         style: TextStyle(
-                            fontSize: 13.5.sp, color: notifier.getgrey),
+                            fontSize: 13.5.sp, color: context.colors.grey),
                       ),
                       SizedBox(height: height / 50),
                       verification()
@@ -121,12 +99,12 @@ class _PhoneNumResetPasswordState extends State<PhoneNumResetPassword> {
                       //       width: width / 1.6,
                       //       child: Customtextfild.textField(
                       //           "Mobile No",
-                      //           notifier.getbluecolor,
+                      //           context.colors.blue,
                       //           Icons.add,
-                      //           notifier.getgrey,
-                      //           notifier.getblck,
-                      //           notifier.getblck,
-                      //           notifier.getgrey,45.sp,300.sp),
+                      //           context.colors.grey,
+                      //           context.colors.black,
+                      //           context.colors.black,
+                      //           context.colors.grey,45.sp,300.sp),
                       //     ),
                       //   ],
                       // ),
@@ -141,8 +119,11 @@ class _PhoneNumResetPasswordState extends State<PhoneNumResetPassword> {
                     const Veryfication(),
                   );
                 },
-                child: CustomButton(LanguageEn.continuee, notifier.getbluecolor,
-                    notifier.getwihitecolor),
+                child: CustomButton(
+                  LanguageEn.continuee,
+                  context.colors.blue,
+                  context.colors.white,
+                ),
               ),
             ],
           ),
@@ -160,7 +141,7 @@ class _PhoneNumResetPasswordState extends State<PhoneNumResetPassword> {
           Radius.circular(15.sp),
         ),
         border: Border.all(
-          color: notifier.getbluecolor,
+          color: context.colors.blue,
         ),
       ),
       child: Row(
@@ -168,7 +149,7 @@ class _PhoneNumResetPasswordState extends State<PhoneNumResetPassword> {
           Padding(
             padding: const EdgeInsets.only(left: 10),
             child: DropdownButton(
-              dropdownColor: notifier.getwihitecolor,
+              dropdownColor: context.colors.white,
               underline: const SizedBox(),
               // Initial Value
               value: dropdownvalue,
@@ -176,7 +157,7 @@ class _PhoneNumResetPasswordState extends State<PhoneNumResetPassword> {
               // Down Arrow Icon
               icon: Icon(
                 Icons.arrow_drop_down,
-                color: notifier.getblck,
+                color:context.colors.black,
               ),
 
               // Array list of items
@@ -185,7 +166,7 @@ class _PhoneNumResetPasswordState extends State<PhoneNumResetPassword> {
                   value: items,
                   child: Text(
                     items,
-                    style: TextStyle(color: notifier.getblck),
+                    style: TextStyle(color:context.colors.black),
                   ),
                 );
               }).toList(),
@@ -202,7 +183,7 @@ class _PhoneNumResetPasswordState extends State<PhoneNumResetPassword> {
           Container(
             height: height / 22,
             width: width / 250,
-            color: notifier.getgrey,
+            color: context.colors.grey,
           ),
           SizedBox(width: width / 22),
           Container(
@@ -210,7 +191,7 @@ class _PhoneNumResetPasswordState extends State<PhoneNumResetPassword> {
             height: 25.h,
             width: 200.w,
             child: TextField(
-              style: TextStyle(color: notifier.getblck),
+              style: TextStyle(color: context.colors.black),
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(border: InputBorder.none),
             ),

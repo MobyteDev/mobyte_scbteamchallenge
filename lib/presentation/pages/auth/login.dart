@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:gocrypto/Custom_BlocObserver/Custtom_app_bar/custtomappbar.dart';
-import 'package:gocrypto/Custom_BlocObserver/notifire_clor.dart';
-import 'package:gocrypto/bottom_bar/bottombar.dart';
-import 'package:gocrypto/screens/Auth/signup.dart';
-import 'package:gocrypto/utils/enstring.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../Custom_BlocObserver/button/custtom_button.dart';
-import '../../Custom_BlocObserver/custtom_textfild/consttom_textfild.dart';
-import '../../Custom_BlocObserver/custtom_textfild/custtompassword.dart';
-import '../../utils/medeiaqury/medeiaqury.dart';
-import '../reset_password/phone_num_reset_password.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/auth/phone_num_reset_password.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/auth/signup.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/button.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/castom_textfield.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/custom_appbar.dart';
+import 'package:mobyte_scbteamchallenge/utils/enstring.dart';
+import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
+import 'package:mobyte_scbteamchallenge/utils/sizes.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -23,33 +18,19 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  late ColorNotifier notifier;
-  getdarkmodepreviousstate() async {
-    final prefs = await SharedPreferences.getInstance();
-    bool? previusstate = prefs.getBool("setIsDark");
-    if (previusstate == null) {
-      notifier.setIsDark = false;
-    } else {
-      notifier.setIsDark = previusstate;
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getdarkmodepreviousstate();
-  }
-
   @override
   Widget build(BuildContext context) {
-    notifier = Provider.of<ColorNotifier>(context, listen: true);
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
     return ScreenUtilInit(
-      builder: () => Scaffold(
-        backgroundColor: notifier.getwihitecolor,
-        appBar: CustomAppBar(notifier.getwihitecolor, "", notifier.getblck,
-            height: height / 15),
+      builder: (_, __) => Scaffold(
+        backgroundColor: context.colors.white,
+        appBar: CustomAppBar(
+          context.colors.white,
+          "",
+          context.colors.black,
+          height: height / 15,
+        ),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,35 +44,37 @@ class _LoginState extends State<Login> {
                       Text(
                         LanguageEn.welcome,
                         style: TextStyle(
-                            color: notifier.getblck,
+                            color: context.colors.black,
                             fontSize: 26.sp,
                             fontFamily: 'Gilroy_Bold'),
                       ),
                       SizedBox(height: height / 40),
                       Text(
                         LanguageEn.youhavebeenmissed,
-                        style:
-                            TextStyle(fontSize: 16.sp, color: notifier.getgrey),
+                        style: TextStyle(
+                            fontSize: 16.sp, color: context.colors.grey),
                       ),
                       SizedBox(height: height / 30),
                       Customtextfild.textField(
-                          LanguageEn.emailadress,
-                          notifier.getbluecolor,
-                          Icons.email,
-                          notifier.getgrey,
-                          notifier.getprefixicon,
-                          notifier.getblck,
-                          notifier.getgrey,
-                          45.sp,
-                          300.sp),
+                        labletext: LanguageEn.emailadress,
+                        focuscolor: context.colors.blue,
+                        preicon: Icons.email,
+                        lablecolor: context.colors.grey,
+                        iconcolor: context.colors.prefixIcon,
+                        textcolor: context.colors.black,
+                        bordercolor: context.colors.grey,
+                        h: 45.sp,
+                        w: 300.sp,
+                      ),
                       SizedBox(height: height / 30),
-                      Custompasswordtextfild.textField(
-                          LanguageEn.password,
-                          notifier.getbluecolor,
-                          Icons.lock,
-                          notifier.getgrey,
-                          notifier.getprefixicon,
-                          notifier.getblck),
+                      // Custompasswordtextfild.textField(
+                      //   labletext: LanguageEn.password,
+                      //   focuscolor: context.colors.blue,
+                      //   preicon: Icons.lock,
+                      //   lablecolor: context.colors.grey,
+                      //   iconcolor: context.colors.prefixicon,
+                      //   textcolor: context.colors.black,
+                      // ),
                       SizedBox(height: height / 30),
                     ],
                   ),
@@ -109,7 +92,7 @@ class _LoginState extends State<Login> {
                     child: Text(
                       LanguageEn.forgotpassword,
                       style: TextStyle(
-                          color: notifier.getbluecolor,
+                          color: context.colors.blue,
                           fontSize: 13.5.sp,
                           fontFamily: 'Gilroy_Medium'),
                     ),
@@ -120,15 +103,17 @@ class _LoginState extends State<Login> {
               SizedBox(height: height / 20),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const BottomHome(),
-                    ),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => const BottomHome(),
+                  //   ),
+                  // );
                 },
-                child: Button(LanguageEn.signin, notifier.getbluecolor,
-                    notifier.getwihitecolor),
+                child: Button(
+                    buttonText: LanguageEn.signin,
+                    buttonTextColor: context.colors.blue,
+                    colorButton: context.colors.white),
               ),
               SizedBox(height: height / 40),
               Row(
@@ -137,20 +122,22 @@ class _LoginState extends State<Login> {
                     child: Container(
                       margin: const EdgeInsets.only(left: 27.0, right: 27.0),
                       child: Divider(
-                        color: notifier.getgrey,
+                        color: context.colors.grey,
                         height: 50,
                       ),
                     ),
                   ),
                   Text(
                     LanguageEn.oR,
-                    style: TextStyle(color: notifier.getgrey),
+                    style: TextStyle(
+                      color: context.colors.grey,
+                    ),
                   ),
                   Expanded(
                     child: Container(
                       margin: const EdgeInsets.only(left: 27.0, right: 27.0),
                       child: Divider(
-                        color: notifier.getgrey,
+                        color: context.colors.grey,
                         height: 50,
                       ),
                     ),
@@ -166,7 +153,7 @@ class _LoginState extends State<Login> {
                   Text(
                     LanguageEn.donthaveanaccount,
                     style: TextStyle(
-                        color: notifier.getgrey,
+                        color: context.colors.grey,
                         fontSize: 15.sp,
                         fontFamily: 'Gilroy_Medium'),
                   ),
@@ -177,7 +164,7 @@ class _LoginState extends State<Login> {
                     child: Text(
                       LanguageEn.signup,
                       style: TextStyle(
-                          color: notifier.getbluecolor,
+                          color: context.colors.blue,
                           fontSize: 15.sp,
                           fontFamily: 'Gilroy_Bold'),
                     ),
@@ -200,7 +187,7 @@ class _LoginState extends State<Login> {
           borderRadius: BorderRadius.all(
             Radius.circular(15.sp),
           ),
-          border: Border.all(color: notifier.getgrey),
+          border: Border.all(color: context.colors.grey),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -210,7 +197,7 @@ class _LoginState extends State<Login> {
             Text(
               LanguageEn.continuewithgoogle,
               style: TextStyle(
-                  color: notifier.getblck,
+                  color: context.colors.black,
                   fontSize: 15.sp,
                   fontFamily: 'Gilroy_Bold'),
             ),

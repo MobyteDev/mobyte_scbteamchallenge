@@ -2,10 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Customtextfild {
-  static Widget textField(labletext, focuscolor, preicon, lablecolor, iconcolor,
-      textcolor, bordercolor, h, w) {
+  static Widget textField({
+    labletext,
+    focuscolor,
+    preicon,
+    lablecolor,
+    iconcolor,
+    textcolor,
+    bordercolor,
+    h,
+    w,
+  }) {
     return ScreenUtilInit(
-      builder: () => Container(
+      builder: (_, __) => Container(
         color: Colors.transparent,
         height: h,
         width: w,

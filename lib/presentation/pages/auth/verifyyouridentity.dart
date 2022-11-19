@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:gocrypto/Custom_BlocObserver/Custtom_app_bar/custtomappbar.dart';
-import 'package:gocrypto/Custom_BlocObserver/button/custtom_button.dart';
-import 'package:gocrypto/Custom_BlocObserver/notifire_clor.dart';
-import 'package:gocrypto/screens/reset_password/cameraverification.dart';
-import 'package:gocrypto/utils/enstring.dart';
-import 'package:gocrypto/utils/medeiaqury/medeiaqury.dart';
-import 'package:provider/provider.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/button.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/custom_appbar.dart';
+import 'package:mobyte_scbteamchallenge/utils/enstring.dart';
+import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
+import 'package:mobyte_scbteamchallenge/utils/sizes.dart';
 
 class VerifyYourIdentity extends StatefulWidget {
   const VerifyYourIdentity({Key? key}) : super(key: key);
@@ -17,20 +15,17 @@ class VerifyYourIdentity extends StatefulWidget {
 }
 
 class _VerifyYourIdentityState extends State<VerifyYourIdentity> {
-  late ColorNotifier notifier;
-
   @override
   Widget build(BuildContext context) {
-    notifier = Provider.of<ColorNotifier>(context, listen: true);
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
     return ScreenUtilInit(
-      builder: () => Scaffold(
-        backgroundColor: notifier.getwihitecolor,
+      builder: (_, __) => Scaffold(
+        backgroundColor: context.colors.white,
         appBar: CustomAppBar(
-          notifier.getwihitecolor,
+          context.colors.white,
           "",
-          notifier.getblck,
+          context.colors.black,
           height: height / 15,
         ),
         body: SingleChildScrollView(
@@ -45,21 +40,21 @@ class _VerifyYourIdentityState extends State<VerifyYourIdentity> {
                       Text(
                         LanguageEn.letsverify,
                         style: TextStyle(
-                            color: notifier.getblck,
+                            color: context.colors.black,
                             fontSize: 23.sp,
                             fontFamily: 'Gilroy_Bold'),
                       ),
                       SizedBox(height: height / 30),
                       Text(
                         LanguageEn.chooseyourdocument,
-                        style:
-                            TextStyle(fontSize: 14.sp, color: notifier.getgrey),
+                        style: TextStyle(
+                            fontSize: 14.sp, color: context.colors.grey),
                       ),
                       SizedBox(height: height / 8),
                       Text(
                         LanguageEn.methodofverification,
-                        style:
-                            TextStyle(fontSize: 14.sp, color: notifier.getgrey),
+                        style: TextStyle(
+                            fontSize: 14.sp, color: context.colors.grey),
                       ),
                       SizedBox(height: height / 50),
                       methodverification(
@@ -77,10 +72,13 @@ class _VerifyYourIdentityState extends State<VerifyYourIdentity> {
               SizedBox(height: height / 5),
               GestureDetector(
                   onTap: () {
-                    Get.to(const Cameraverification());
+                    // Get.to(const Cameraverification());
                   },
-                  child: Button(LanguageEn.continuee, notifier.getbluecolor,
-                      notifier.getwihitecolor))
+                  child: Button(
+                    buttonText: LanguageEn.continuee,
+                    buttonTextColor: context.colors.blue,
+                    colorButton: context.colors.white,
+                  ))
             ],
           ),
         ),
@@ -93,7 +91,7 @@ class _VerifyYourIdentityState extends State<VerifyYourIdentity> {
       height: height / 12,
       width: width / 1.14,
       decoration: BoxDecoration(
-        color: notifier.getidentyfiymethod,
+        color: context.colors.identifyMethod,
         borderRadius: BorderRadius.all(
           Radius.circular(15.sp),
         ),
@@ -108,13 +106,13 @@ class _VerifyYourIdentityState extends State<VerifyYourIdentity> {
           Text(
             verificationname,
             style: TextStyle(
-                color: notifier.getblck,
+                color: context.colors.black,
                 fontFamily: 'Gilroy_Bold',
                 fontSize: 16.sp),
           ),
           const Spacer(),
           Icon(Icons.arrow_forward_ios_rounded,
-              color: notifier.getgrey, size: 20.sp),
+              color: context.colors.grey, size: 20.sp),
           SizedBox(width: width / 20),
         ],
       ),

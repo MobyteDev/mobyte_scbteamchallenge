@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:gocrypto/Custom_BlocObserver/button/custtom_button.dart';
-import 'package:gocrypto/Custom_BlocObserver/notifire_clor.dart';
-import 'package:gocrypto/screens/Auth/face_id.dart';
-import 'package:gocrypto/utils/enstring.dart';
-import 'package:gocrypto/utils/medeiaqury/medeiaqury.dart';
-import 'package:provider/provider.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/auth/face_id.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/button.dart';
+import 'package:mobyte_scbteamchallenge/utils/enstring.dart';
+import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
+import 'package:mobyte_scbteamchallenge/utils/sizes.dart';
 
 class Complateerification extends StatefulWidget {
   const Complateerification({Key? key}) : super(key: key);
@@ -16,14 +15,11 @@ class Complateerification extends StatefulWidget {
 }
 
 class _ComplateerificationState extends State<Complateerification> {
-  late ColorNotifier notifier;
-
   @override
   Widget build(BuildContext context) {
-    notifier = Provider.of<ColorNotifier>(context, listen: true);
     return ScreenUtilInit(
-      builder: () => Scaffold(
-        backgroundColor: notifier.getwihitecolor,
+      builder: (_, __) => Scaffold(
+        backgroundColor: context.colors.white,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -36,7 +32,7 @@ class _ComplateerificationState extends State<Complateerification> {
               Text(
                 LanguageEn.youreverified,
                 style: TextStyle(
-                    color: notifier.getblck,
+                    color: context.colors.black,
                     fontFamily: 'Gilroy_Bold',
                     fontSize: 27.sp),
               ),
@@ -44,17 +40,21 @@ class _ComplateerificationState extends State<Complateerification> {
               Text(
                 LanguageEn.youhavebeensucces,
                 style: TextStyle(
-                    color: notifier.getgrey,
+                    color: context.colors.grey,
                     fontSize: 15.sp,
                     fontFamily: 'Gilroy_Medium'),
               ),
               SizedBox(height: height / 4.3),
               GestureDetector(
-                  onTap: () {
-                    Get.to(const Faceid());
-                  },
-                  child: Button(LanguageEn.done, notifier.getbluecolor,
-                      notifier.getwihitecolor))
+                onTap: () {
+                  Get.to(const Faceid());
+                },
+                child: Button(
+                  buttonText: LanguageEn.done,
+                  buttonTextColor: context.colors.blue,
+                  colorButton: context.colors.white,
+                ),
+              )
             ],
           ),
         ),

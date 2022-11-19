@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/Auth/signup.dart';
 import 'package:mobyte_scbteamchallenge/utils/enstring.dart';
 import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
+import 'package:mobyte_scbteamchallenge/utils/sizes.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,29 +15,12 @@ class OnbondingSecond extends StatefulWidget {
 }
 
 class _OnbondingSecondState extends State<OnbondingSecond> {
-  late ColorNotifier notifier;
-  getdarkmodepreviousstate() async {
-    final prefs = await SharedPreferences.getInstance();
-    bool? previusstate = prefs.getBool("setIsDark");
-    if (previusstate == null) {
-      notifier.setIsDark = false;
-    } else {
-      notifier.setIsDark = previusstate;
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getdarkmodepreviousstate();
-  }
 
   @override
   Widget build(BuildContext context) {
-    // notifier = Provider.of<ColorNotifier>(context, listen: true);
-    final height = MediaQuery.of(context).size.height;
+    height = MediaQuery.of(context).size.height;
     return Scaffold(
-      // backgroundColor: notifier.getwihitecolor,
+      // backgroundColor: context.colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -47,7 +31,7 @@ class _OnbondingSecondState extends State<OnbondingSecond> {
               LanguageEn.bestappto,
               textAlign: TextAlign.center,
               style: TextStyle(
-                  // color: notifier.getblck,
+                  // color: context.colors.black,
                   fontSize: 25.sp,
                   fontFamily: 'Gilroy_Bold'),
             ),
@@ -56,7 +40,7 @@ class _OnbondingSecondState extends State<OnbondingSecond> {
               LanguageEn.trackmorethan,
               textAlign: TextAlign.center,
               style: TextStyle(
-                  // color: notifier.getgrey,
+                  // color: context.colors.grey,
                   fontSize: 13.sp,
                   fontFamily: 'Gilroy_Medium'),
             ),
@@ -70,8 +54,8 @@ class _OnbondingSecondState extends State<OnbondingSecond> {
                   ),
                 );
               },
-              // child: Button(LanguageEn.getstarted, notifier.getbluecolor,
-              //     notifier.getwihitecolor,),
+              // child: Button(LanguageEn.getstarted, context.colors.blue,
+              //     context.colors.white,),
             ),
             // GestureDetector(
             //     onTap: () {
@@ -80,7 +64,7 @@ class _OnbondingSecondState extends State<OnbondingSecond> {
             //       );
             //     },
             //     child: button(
-            //         "Login", notifier.getwihitecolor, notifier.getbluecolor)),
+            //         "Login", context.colors.white, context.colors.blue)),
           ],
         ),
       ),

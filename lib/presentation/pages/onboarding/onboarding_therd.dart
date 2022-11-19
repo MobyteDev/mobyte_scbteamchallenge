@@ -5,41 +5,22 @@ import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/button
 import 'package:mobyte_scbteamchallenge/presentation/pages/onboarding/onboarding_second.dart';
 import 'package:mobyte_scbteamchallenge/utils/enstring.dart';
 import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mobyte_scbteamchallenge/utils/sizes.dart';
 
-class TherdOnboarding extends StatefulWidget {
-  const TherdOnboarding({Key? key}) : super(key: key);
+class ThirdOnboarding extends StatefulWidget {
+  const ThirdOnboarding({Key? key}) : super(key: key);
 
   @override
-  State<TherdOnboarding> createState() => _TherdOnbondingState();
+  State<ThirdOnboarding> createState() => _ThirdOnboardingState();
 }
 
-class _TherdOnbondingState extends State<TherdOnboarding> {
-  late ColorNotifier notifier;
-  getdarkmodepreviousstate() async {
-    final prefs = await SharedPreferences.getInstance();
-    bool? previusstate = prefs.getBool("setIsDark");
-    if (previusstate == null) {
-      notifier.setIsDark = false;
-    } else {
-      notifier.setIsDark = previusstate;
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getdarkmodepreviousstate();
-  }
-
+class _ThirdOnboardingState extends State<ThirdOnboarding> {
   @override
   Widget build(BuildContext context) {
-    notifier = Provider.of<ColorNotifier>(context, listen: true);
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    height = MediaQuery.of(context).size.height;
+    width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: notifier.getwihitecolor,
+      backgroundColor: context.colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -50,7 +31,7 @@ class _TherdOnbondingState extends State<TherdOnboarding> {
               LanguageEn.startedDiscover,
               textAlign: TextAlign.center,
               style: TextStyle(
-                  // color: notifier.getblck,
+                  // color: context.colors.black,
                   fontSize: 25.sp,
                   fontFamily: 'Gilroy_Bold'),
             ),
@@ -59,7 +40,7 @@ class _TherdOnbondingState extends State<TherdOnboarding> {
               LanguageEn.starttradingyourmoney,
               textAlign: TextAlign.center,
               style: TextStyle(
-                  // color: notifier.getgrey,
+                  // color: context.colors.grey,
                   fontSize: 13.sp,
                   fontFamily: 'Gilroy_Medium'),
             ),
@@ -76,8 +57,8 @@ class _TherdOnbondingState extends State<TherdOnboarding> {
                       ),
                     );
                   },
-                  // child: button(LanguageEn.skip, notifier.getwihitecolor,
-                  //     notifier.getbluecolor),
+                  // child: button(LanguageEn.skip, context.colors.white,
+                  //     context.colors.blue),
                 ),
                 SizedBox(width: width / 50),
                 GestureDetector(
@@ -90,9 +71,10 @@ class _TherdOnbondingState extends State<TherdOnboarding> {
                     );
                   },
                   child: Button(
-                      buttonText: LanguageEn.next,
-                      buttonTextColor: notifier.getbluecolor,
-                      colorButton: notifier.getwihitecolor),
+                    buttonText: LanguageEn.next,
+                    buttonTextColor: context.colors.blue,
+                    colorButton: context.colors.white,
+                  ),
                 ),
               ],
             ),

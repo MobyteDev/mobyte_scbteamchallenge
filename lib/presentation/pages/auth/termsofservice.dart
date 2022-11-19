@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:gocrypto/Custom_BlocObserver/Custtom_app_bar/custtomappbar.dart';
-import 'package:gocrypto/Custom_BlocObserver/notifire_clor.dart';
-import 'package:gocrypto/bottom_bar/bottombar.dart';
-import 'package:gocrypto/utils/enstring.dart';
-import 'package:gocrypto/utils/medeiaqury/medeiaqury.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/custom_appbar.dart';
+import 'package:mobyte_scbteamchallenge/utils/enstring.dart';
+import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
+import 'package:mobyte_scbteamchallenge/utils/sizes.dart';
 import 'package:provider/provider.dart';
 
 class TermsofService extends StatefulWidget {
@@ -16,20 +16,17 @@ class TermsofService extends StatefulWidget {
 }
 
 class _TermsofServiceState extends State<TermsofService> {
-  late ColorNotifier notifier;
-
   @override
   Widget build(BuildContext context) {
-    notifier = Provider.of<ColorNotifier>(context, listen: true);
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
     return ScreenUtilInit(
-      builder: () => Scaffold(
-        backgroundColor: notifier.getwihitecolor,
+      builder: (_, __) => Scaffold(
+        backgroundColor: context.colors.white,
         appBar: CustomAppBar(
-          notifier.getwihitecolor,
+          context.colors.white,
           LanguageEn.termsofservice,
-          notifier.getblck,
+          context.colors.black,
           height: height / 15,
         ),
         body: SingleChildScrollView(
@@ -48,9 +45,10 @@ class _TermsofServiceState extends State<TermsofService> {
                           Text(
                             LanguageEn.lastupdate,
                             style: TextStyle(
-                                color: notifier.getgrey,
-                                fontSize: 15.sp,
-                                fontFamily: 'Gilroy_Medium'),
+                              color: context.colors.grey,
+                              fontSize: 15.sp,
+                              fontFamily: 'Gilroy_Medium',
+                            ),
                           )
                         ],
                       ),
@@ -61,7 +59,7 @@ class _TermsofServiceState extends State<TermsofService> {
                           Text(
                             LanguageEn.terms,
                             style: TextStyle(
-                                color: notifier.getblck,
+                                color: context.colors.black,
                                 fontSize: 19.sp,
                                 fontFamily: 'Gilroy_Bold'),
                           )
@@ -74,7 +72,7 @@ class _TermsofServiceState extends State<TermsofService> {
                         child: Text(
                           LanguageEn.termslorem,
                           style: TextStyle(
-                              color: notifier.getgrey,
+                              color: context.colors.grey,
                               fontSize: 15.sp,
                               fontFamily: 'Gilroy_Medium'),
                         ),
@@ -86,7 +84,7 @@ class _TermsofServiceState extends State<TermsofService> {
                           Text(
                             LanguageEn.uselicense,
                             style: TextStyle(
-                                color: notifier.getblck,
+                                color: context.colors.black,
                                 fontSize: 19.sp,
                                 fontFamily: 'Gilroy_Bold'),
                           )
@@ -99,9 +97,10 @@ class _TermsofServiceState extends State<TermsofService> {
                         child: Text(
                           LanguageEn.adipiscingtempus,
                           style: TextStyle(
-                              color: notifier.getgrey,
-                              fontSize: 15.sp,
-                              fontFamily: 'Gilroy_Medium'),
+                            color: context.colors.grey,
+                            fontSize: 15.sp,
+                            fontFamily: 'Gilroy_Medium',
+                          ),
                         ),
                       ),
                       Padding(
@@ -110,9 +109,10 @@ class _TermsofServiceState extends State<TermsofService> {
                         child: Text(
                           LanguageEn.adipiscingtempus,
                           style: TextStyle(
-                              color: notifier.getgrey,
-                              fontSize: 15.sp,
-                              fontFamily: 'Gilroy_Medium'),
+                            color: context.colors.grey,
+                            fontSize: 15.sp,
+                            fontFamily: 'Gilroy_Medium',
+                          ),
                         ),
                       ),
                     ],
@@ -124,26 +124,33 @@ class _TermsofServiceState extends State<TermsofService> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GestureDetector(
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: button(
-                          LanguageEn.declined,
-                          notifier.getwihitecolor,
-                          notifier.getbluecolor,
-                          notifier.getgrey)),
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: button(
+                      LanguageEn.declined,
+                      context.colors.white,
+                      context.colors.blue,
+                      context.colors.grey,
+                    ),
+                  ),
                   SizedBox(width: width / 50),
                   GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const BottomHome(),
-                          ),
-                        );
-                      },
-                      child: button(LanguageEn.accept, notifier.getbluecolor,
-                          notifier.getwihitecolor, notifier.getbluecolor)),
+                    onTap: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => const BottomHome(),
+                      //   ),
+                      // );
+                    },
+                    child: button(
+                      LanguageEn.accept,
+                      context.colors.blue,
+                      context.colors.white,
+                      context.colors.blue,
+                    ),
+                  ),
                 ],
               ),
             ],

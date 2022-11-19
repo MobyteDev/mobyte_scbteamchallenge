@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gocrypto/Custom_BlocObserver/notifire_clor.dart';
-import 'package:gocrypto/screens/Auth/pin.dart';
-import 'package:gocrypto/utils/enstring.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/auth/pin.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/button.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/custom_appbar.dart';
+import 'package:mobyte_scbteamchallenge/utils/enstring.dart';
+import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
+import 'package:mobyte_scbteamchallenge/utils/sizes.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../Custom_BlocObserver/Custtom_app_bar/custtomappbar.dart';
-import '../../Custom_BlocObserver/button/custtom_button.dart';
-import '../../utils/medeiaqury/medeiaqury.dart';
 
 class FingerPrint extends StatefulWidget {
   const FingerPrint({Key? key}) : super(key: key);
@@ -18,33 +17,19 @@ class FingerPrint extends StatefulWidget {
 }
 
 class _FingerPrintState extends State<FingerPrint> {
-  late ColorNotifier notifier;
-  getdarkmodepreviousstate() async {
-    final prefs = await SharedPreferences.getInstance();
-    bool? previusstate = prefs.getBool("setIsDark");
-    if (previusstate == null) {
-      notifier.setIsDark = false;
-    } else {
-      notifier.setIsDark = previusstate;
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getdarkmodepreviousstate();
-  }
-
   @override
   Widget build(BuildContext context) {
-    notifier = Provider.of<ColorNotifier>(context, listen: true);
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
     return ScreenUtilInit(
-      builder: () => Scaffold(
-        backgroundColor: notifier.getwihitecolor,
-        appBar: CustomAppBar(notifier.getwihitecolor, "", notifier.getblck,
-            height: height / 15),
+      builder: (_, __) => Scaffold(
+        backgroundColor: context.colors.white,
+        appBar: CustomAppBar(
+          context.colors.white,
+          "",
+          context.colors.blue,
+          height: height / 15,
+        ),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,7 +39,7 @@ class _FingerPrintState extends State<FingerPrint> {
                   LanguageEn.fingerprint,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: notifier.getblck,
+                      color: context.colors.black,
                       fontSize: 26.sp,
                       fontFamily: 'Gilroy_Bold'),
                 ),
@@ -64,7 +49,10 @@ class _FingerPrintState extends State<FingerPrint> {
                 child: Text(
                   LanguageEn.unlockfinger,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 16.sp, color: notifier.getgrey),
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    color: context.colors.grey,
+                  ),
                 ),
               ),
               SizedBox(height: height / 20),
@@ -74,16 +62,20 @@ class _FingerPrintState extends State<FingerPrint> {
               ),
               SizedBox(height: height / 4),
               GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Pin(),
-                      ),
-                    );
-                  },
-                  child: Button(LanguageEn.setupfingerprint,
-                      notifier.getbluecolor, notifier.getwihitecolor))
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Pin(),
+                    ),
+                  );
+                },
+                child: Button(
+                  buttonText: LanguageEn.setupfingerprint,
+                  buttonTextColor: context.colors.blue,
+                  colorButton:context.colors.white,
+                ),
+              )
             ],
           ),
         ),
