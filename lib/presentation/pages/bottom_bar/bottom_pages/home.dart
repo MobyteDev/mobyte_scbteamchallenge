@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/stock_exchange_tabs/selectstocks.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/stock_exchange_tabs/stockgainscard.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/widgets/home_page_title.dart';
 import 'package:mobyte_scbteamchallenge/utils/enstring.dart';
 import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
 import 'package:mobyte_scbteamchallenge/utils/sizes.dart';
-import 'package:provider/provider.dart';
 
 import 'stock_exchange_tabs/notification.dart';
 
@@ -18,65 +19,103 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   int touchedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
-    return ScreenUtilInit(
-      builder: (_, __) => Scaffold(
-        backgroundColor: context.colors.white,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(70.sp),
-          // here the desired height
-          child: AppBar(
-            actions: [
-              GestureDetector(
-                onTap: () {
-                  Get.to(const SelectStocks());
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset("assets/images/searsh.png"),
-                ),
+    return Scaffold(
+      backgroundColor: context.colors.white,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(70.sp),
+        // here the desired height
+        child: AppBar(
+          actions: [
+            GestureDetector(
+              onTap: () {
+                Get.to(const SelectStocks());
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset("assets/images/searsh.png"),
               ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(const Notifi());
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset("assets/images/bell.png"),
-                ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Get.to(const Notifi());
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset("assets/images/bell.png"),
+              ),
+            ),
+          ],
+          elevation: 0,
+          backgroundColor: context.colors.white,
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: height / 70),
+              Text(
+                LanguageEn.gocrypto,
+                style: TextStyle(
+                    fontSize: 20.sp,
+                    color: context.colors.black,
+                    fontFamily: 'Gilroy_Bold'),
+              ),
+              Text(
+                LanguageEn.buildingtrustinthecrypto,
+                style: TextStyle(
+                    fontSize: 13.5.sp,
+                    color: context.colors.grey,
+                    fontFamily: 'Gilroy-Regular'),
               ),
             ],
-            elevation: 0,
-            backgroundColor: context.colors.white,
-            title: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          ),
+        ),
+      ),
+      body: Column(
+        children: [
+          const CusttomStockGainscard(
+            account: "340000",
+            percent: "2,5",
+          ),
+          Padding(
+            padding: EdgeInsets.all(13.0.w),
+            child: const HomePageTitle(
+              title: "Favorites",
+              isExpanded: true,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(13.0.w),
+            child: const HomePageTitle(
+              title: "My Portfolio",
+              isExpanded: false,
+            ),
+          ),
+          Row(
+            children: [
+              mypoyfoliyo("assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
+              SizedBox(width: 15.w),
+              mypoyfoliyo("assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
+            ],
+          ),
+          SingleChildScrollView(
+            child: Row(
+              // shrinkWrap: true,
+              // scrollDirection: Axis.horizontal,
               children: [
-                SizedBox(height: height / 70),
-                Text(
-                  LanguageEn.gocrypto,
-                  style: TextStyle(
-                      fontSize: 20.sp,
-                      color: context.colors.black,
-                      fontFamily: 'Gilroy_Bold'),
-                ),
-                Text(
-                  LanguageEn.buildingtrustinthecrypto,
-                  style: TextStyle(
-                      fontSize: 13.5.sp,
-                      color: context.colors.grey,
-                      fontFamily: 'Gilroy-Regular'),
-                ),
+                mypoyfoliyo(
+                    "assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
+                SizedBox(width: 15.w),
+                mypoyfoliyo(
+                    "assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
               ],
             ),
           ),
-        ),
-
+        ],
       ),
     );
   }
@@ -101,16 +140,16 @@ class _HomeState extends State<Home> {
                 child: Image.asset(image, height: height / 15),
               ),
               SizedBox(width: width / 20),
-              // SizedBox(height: height / 50),
               Column(
                 children: [
                   SizedBox(height: height / 50),
                   Text(
                     title,
                     style: TextStyle(
-                        color: context.colors.black,
-                        fontSize: 18.sp,
-                        fontFamily: 'Gilroy_Bold'),
+                      color: context.colors.black,
+                      fontSize: 18.sp,
+                      fontFamily: 'Gilroy_Bold',
+                    ),
                   ),
                 ],
               ),
@@ -177,8 +216,7 @@ class _HomeState extends State<Home> {
         ),
       ),
       borderData: FlBorderData(
-          show: true,
-          border: Border.all(color: context.colors.blue, width: 0)),
+          show: true, border: Border.all(color: context.colors.blue, width: 0)),
       minX: 0,
       maxX: 8,
       minY: 0,

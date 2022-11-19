@@ -16,74 +16,75 @@ class Buy extends StatefulWidget {
 }
 
 class _BuyState extends State<Buy> {
+  final TextEditingController sendController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
-    return ScreenUtilInit(
-      builder: (_, __) => Scaffold(
-        backgroundColor: context.colors.favorites,
-        body: Column(
-          children: [
-            GestureDetector(
-              onTap: () {
-                Get.to(
-                  const SelectStocks(),
-                );
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(left: 13, right: 13),
-                child: exchangestock(),
-              ),
-            ),
-            SizedBox(height: height / 50),
-            Padding(
+    return Scaffold(
+      backgroundColor: context.colors.favorites,
+      body: Column(
+        children: [
+          GestureDetector(
+            onTap: () {
+              Get.to(
+                const SelectStocks(),
+              );
+            },
+            child: Padding(
               padding: const EdgeInsets.only(left: 13, right: 13),
-              child: exchangefree(),
+              child: exchangestock(sendController),
             ),
-            SizedBox(height: height / 25),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  LanguageEn.clickherefor,
-                  style: TextStyle(
-                      color: context.colors.grey,
-                      fontSize: 11.sp,
-                      fontFamily: 'Gilroy_Medium'),
-                ),
-                Text(
-                  LanguageEn.termsandcondition,
-                  style: TextStyle(
-                      color: context.colors.blue,
-                      fontSize: 11.sp,
-                      fontFamily: 'Gilroy_Medium'),
-                ),
-              ],
-            ),
-            Text(
-              LanguageEn.forthistranjection,
-              style: TextStyle(
-                  color: context.colors.grey,
-                  fontSize: 11.sp,
-                  fontFamily: 'Gilroy_Medium'),
-            ),
-            SizedBox(height: height / 17),
-            GestureDetector(
-              onTap: () {
-                Get.to(
-                  const SelectCrypto(),
-                  // const SelectStocks(),
-                );
-              },
-              child: Button(
-                buttonText: LanguageEn.exchangenow,
-                buttonTextColor: context.colors.blue,
-                colorButton: context.colors.white,
+          ),
+          SizedBox(height: height / 50),
+          Padding(
+            padding: const EdgeInsets.only(left: 13, right: 13),
+            child: exchangefree(),
+          ),
+          SizedBox(height: height / 25),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                LanguageEn.clickherefor,
+                style: TextStyle(
+                    color: context.colors.grey,
+                    fontSize: 11.sp,
+                    fontFamily: 'Gilroy_Medium'),
               ),
+              Text(
+                LanguageEn.termsandcondition,
+                style: TextStyle(
+                  color: context.colors.blue,
+                  fontSize: 11.sp,
+                  fontFamily: 'Gilroy_Medium',
+                ),
+              ),
+            ],
+          ),
+          Text(
+            LanguageEn.forthistranjection,
+            style: TextStyle(
+              color: context.colors.grey,
+              fontSize: 11.sp,
+              fontFamily: 'Gilroy_Medium',
             ),
-          ],
-        ),
+          ),
+          SizedBox(height: height / 17),
+          GestureDetector(
+            onTap: () {
+              Get.to(
+                const SelectCrypto(),
+                // const SelectStocks(),
+              );
+            },
+            child: Button(
+              buttonText: LanguageEn.exchangenow,
+              buttonTextColor: context.colors.blue,
+              colorButton: context.colors.white,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -163,12 +164,11 @@ class _BuyState extends State<Buy> {
     );
   }
 
-  Widget exchangestock() {
+  Widget exchangestock(TextEditingController ctrl) {
     return Center(
       child: Card(
         elevation: 0,
         color: context.colors.white,
-        // color: context.colors.favorites,
         child: Container(
           color: Colors.transparent,
           height: height / 3.4,
@@ -193,14 +193,32 @@ class _BuyState extends State<Buy> {
               Row(
                 children: [
                   SizedBox(width: width / 20),
-                  Text(
-                    "0.14689",
-                    style: TextStyle(
-                      color: context.colors.black,
-                      fontSize: 15.sp,
-                      fontFamily: 'Gilroy_Bold',
+                  SizedBox(
+                    width: 55.w,
+                    child: TextField(
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        labelText: "0.14689",
+                      ),
+                      cursorColor: context.colors.black,
+                      style: TextStyle(
+                        color: context.colors.black,
+                        fontSize: 15.sp,
+                        fontFamily: 'Gilroy_Bold',
+                      ),
+                      controller: ctrl,
                     ),
                   ),
+                  // Text(
+                  //   "0.14689",
+                  //   style: TextStyle(
+                  //     color: context.colors.black,
+                  //     fontSize: 15.sp,
+                  //     fontFamily: 'Gilroy_Bold',
+                  //   ),
+                  // ),
                   SizedBox(width: width / 2.6),
                   Image.asset("assets/images/airtel.jpg", height: height / 30),
                   SizedBox(width: width / 50),
@@ -255,14 +273,32 @@ class _BuyState extends State<Buy> {
               Row(
                 children: [
                   SizedBox(width: width / 20),
-                  Text(
-                    "22878.12",
-                    style: TextStyle(
-                      color: context.colors.black,
-                      fontSize: 15.sp,
-                      fontFamily: 'Gilroy_Bold',
+                  SizedBox(
+                    width: 55.w,
+                    child: TextField(
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        labelText: "0.14689",
+                      ),
+                      cursorColor: context.colors.black,
+                      style: TextStyle(
+                        color: context.colors.black,
+                        fontSize: 15.sp,
+                        fontFamily: 'Gilroy_Bold',
+                      ),
+                      controller: ctrl,
                     ),
                   ),
+                  // Text(
+                  //   "22878.12",
+                  //   style: TextStyle(
+                  //     color: context.colors.black,
+                  //     fontSize: 15.sp,
+                  //     fontFamily: 'Gilroy_Bold',
+                  //   ),
+                  // ),
                   SizedBox(width: width / 2.7),
                   Image.asset("assets/images/Dai.png", height: height / 30),
                   SizedBox(width: width / 50),
