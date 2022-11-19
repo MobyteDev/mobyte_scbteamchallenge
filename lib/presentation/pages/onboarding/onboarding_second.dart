@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/Auth/signup.dart';
 import 'package:mobyte_scbteamchallenge/utils/enstring.dart';
+import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,15 +14,15 @@ class OnbondingSecond extends StatefulWidget {
 }
 
 class _OnbondingSecondState extends State<OnbondingSecond> {
-  // late ColorNotifier notifier;
+  late ColorNotifier notifier;
   getdarkmodepreviousstate() async {
     final prefs = await SharedPreferences.getInstance();
     bool? previusstate = prefs.getBool("setIsDark");
-    // if (previusstate == null) {
-    //   notifier.setIsDark = false;
-    // } else {
-    //   notifier.setIsDark = previusstate;
-    // }
+    if (previusstate == null) {
+      notifier.setIsDark = false;
+    } else {
+      notifier.setIsDark = previusstate;
+    }
   }
 
   @override
@@ -33,7 +35,6 @@ class _OnbondingSecondState extends State<OnbondingSecond> {
   Widget build(BuildContext context) {
     // notifier = Provider.of<ColorNotifier>(context, listen: true);
     final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       // backgroundColor: notifier.getwihitecolor,
       body: SingleChildScrollView(
@@ -62,12 +63,12 @@ class _OnbondingSecondState extends State<OnbondingSecond> {
             SizedBox(height: height / 5.9),
             GestureDetector(
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => const SignUp(),
-                //   ),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SignUp(),
+                  ),
+                );
               },
               // child: Button(LanguageEn.getstarted, notifier.getbluecolor,
               //     notifier.getwihitecolor,),

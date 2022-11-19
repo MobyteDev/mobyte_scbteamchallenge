@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/swiper.dart';
+import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SpashScreen extends StatefulWidget {
@@ -13,14 +15,15 @@ class SpashScreen extends StatefulWidget {
 }
 
 class _SpashScreenState extends State<SpashScreen> {
+  late ColorNotifier notifier;
   getdarkmodepreviousstate() async {
     final prefs = await SharedPreferences.getInstance();
     bool? previusstate = prefs.getBool("setIsDark");
-    // if (previusstate == null) {
-    //   notifier.setIsDark = false;
-    // } else {
-    //   notifier.setIsDark = previusstate;
-    // }
+    if (previusstate == null) {
+      notifier.setIsDark = false;
+    } else {
+      notifier.setIsDark = previusstate;
+    }
   }
 
   @override
@@ -40,16 +43,14 @@ class _SpashScreenState extends State<SpashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // notifier = Provider.of<ColorNotifier>(context, listen: true);
-    // height = MediaQuery.of(context).size.height;
-    // width = MediaQuery.of(context).size.width;
+    notifier = Provider.of<ColorNotifier>(context, listen: true);
     return Scaffold(
-      // backgroundColor: notifier.getbluecolor,
+      backgroundColor: notifier.getbluecolor,
       body: Center(
         child: Text(
           "GoCrypto",
           style: TextStyle(
-              // color: notifier.getwihitecolor,
+              color: notifier.getwihitecolor,
               fontFamily: 'Gilroy_Bold',
               fontSize: 35.sp),
         ),

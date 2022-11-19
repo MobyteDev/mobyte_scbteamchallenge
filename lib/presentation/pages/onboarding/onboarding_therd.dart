@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/Auth/login.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/button.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/onboarding/onboarding_second.dart';
 import 'package:mobyte_scbteamchallenge/utils/enstring.dart';
+import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,15 +16,15 @@ class TherdOnboarding extends StatefulWidget {
 }
 
 class _TherdOnbondingState extends State<TherdOnboarding> {
-  // late ColorNotifier notifier;
+  late ColorNotifier notifier;
   getdarkmodepreviousstate() async {
     final prefs = await SharedPreferences.getInstance();
     bool? previusstate = prefs.getBool("setIsDark");
-    // if (previusstate == null) {
-    //   notifier.setIsDark = false;
-    // } else {
-    //   notifier.setIsDark = previusstate;
-    // }
+    if (previusstate == null) {
+      notifier.setIsDark = false;
+    } else {
+      notifier.setIsDark = previusstate;
+    }
   }
 
   @override
@@ -32,11 +35,11 @@ class _TherdOnbondingState extends State<TherdOnboarding> {
 
   @override
   Widget build(BuildContext context) {
-    // notifier = Provider.of<ColorNotifier>(context, listen: true);
+    notifier = Provider.of<ColorNotifier>(context, listen: true);
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      // backgroundColor: notifier.getwihitecolor,
+      backgroundColor: notifier.getwihitecolor,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -66,12 +69,12 @@ class _TherdOnbondingState extends State<TherdOnboarding> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => const Login(),
-                    //   ),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Login(),
+                      ),
+                    );
                   },
                   // child: button(LanguageEn.skip, notifier.getwihitecolor,
                   //     notifier.getbluecolor),
@@ -86,8 +89,10 @@ class _TherdOnbondingState extends State<TherdOnboarding> {
                       ),
                     );
                   },
-                  // child: button(LanguageEn.next, notifier.getbluecolor,
-                  //     notifier.getwihitecolor),
+                  child: Button(
+                      buttonText: LanguageEn.next,
+                      buttonTextColor: notifier.getbluecolor,
+                      colorButton: notifier.getwihitecolor),
                 ),
               ],
             ),
