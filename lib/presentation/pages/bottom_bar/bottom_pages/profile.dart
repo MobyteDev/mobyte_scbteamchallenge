@@ -334,9 +334,8 @@ class _ProfileState extends State<Profile> {
               activeColor: context.colors.blue,
               value: context.colors.isDark,
               onChanged: (val) async {
-                final prefs = await SharedPreferences.getInstance();
                 setState(() {
-                  context.colors.setIsDark(val);
+                  Provider.of<ColorNotifier>(context, listen: false).setIsDark(val);
                 });
               },
             ),
