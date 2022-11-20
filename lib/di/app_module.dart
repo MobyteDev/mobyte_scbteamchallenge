@@ -13,7 +13,7 @@ abstract class AppModule {
     connectTimeout: 20 * 1000,
     receiveTimeout: 20 * 1000,
     headers: <String, String>{
-      'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbW9ieXRlc2NidGVhbWNoYWxsZW5nZS5oZXJva3VhcHAuY29tL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNjY4OTI5MDAwLCJleHAiOjE2Njg5MzI2MDAsIm5iZiI6MTY2ODkyOTAwMCwianRpIjoiQm5Ha3RwRG42VUNFVXRSaCIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.idhU8gHuVnRgQt6PuHPcslSq1Y40W7J6gQNu63GdOd4',
+      'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbW9ieXRlc2NidGVhbWNoYWxsZW5nZS5oZXJva3VhcHAuY29tL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNjY4OTM2MzU3LCJleHAiOjE2Njg5Mzk5NTcsIm5iZiI6MTY2ODkzNjM1NywianRpIjoiZ2ZPdmkweXhxb25Bc0dZQSIsInN1YiI6IjMiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.BTooYH-Op4g1mNnj7w6mM9pEcFPQsnJFtudyOCIgMKE',
     },
   ));
 

@@ -1,7 +1,12 @@
+import 'dart:math';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:mobyte_scbteamchallenge/di/locator.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/bloc/home_cubit.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/stock_exchange_tabs/selectstocks.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/stock_exchange_tabs/stockgainscard.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/widgets/home_page_title.dart';
@@ -25,130 +30,120 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width - 90;
-    return Scaffold(
-      backgroundColor: context.colors.white,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(70.sp),
-        // here the desired height
-        child: AppBar(
-          actions: [
-            GestureDetector(
-              onTap: () {
-                Get.to(const SelectStocks());
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image.asset("assets/images/searsh.png"),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Get.to(const Notifi());
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image.asset("assets/images/bell.png"),
-              ),
-            ),
-          ],
-          elevation: 0,
+    return BlocProvider(
+      create: (_) => getIt<HomeCubit>()..pageOpened(),
+      child: BlocBuilder<HomeCubit, HomeState>(
+        builder: (_, state) => Scaffold(
           backgroundColor: context.colors.white,
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: height / 70),
-              Text(
-                LanguageEn.gocrypto,
-                style: TextStyle(
-                    fontSize: 20.sp,
-                    color: context.colors.black,
-                    fontFamily: 'Gilroy_Bold'),
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(70.sp),
+            // here the desired height
+            child: AppBar(
+              actions: [
+                GestureDetector(
+                  onTap: () {
+                    Get.to(const SelectStocks());
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset("assets/images/searsh.png"),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(const Notifi());
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset("assets/images/bell.png"),
+                  ),
+                ),
+              ],
+              elevation: 0,
+              backgroundColor: context.colors.white,
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: height / 70),
+                  Text(
+                    LanguageEn.gocrypto,
+                    style: TextStyle(
+                        fontSize: 20.sp,
+                        color: context.colors.black,
+                        fontFamily: 'Gilroy_Bold'),
+                  ),
+                  Text(
+                    LanguageEn.buildingtrustinthecrypto,
+                    style: TextStyle(
+                        fontSize: 13.5.sp,
+                        color: context.colors.grey,
+                        fontFamily: 'Gilroy-Regular'),
+                  ),
+                ],
               ),
-              Text(
-                LanguageEn.buildingtrustinthecrypto,
-                style: TextStyle(
-                    fontSize: 13.5.sp,
-                    color: context.colors.grey,
-                    fontFamily: 'Gilroy-Regular'),
+            ),
+          ),
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(right: 15.w),
+              child: Column(
+                children: [
+                  const CusttomStockGainscard(
+                    account: "340000",
+                    percent: "2,5",
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(13.0.w),
+                    child: const HomePageTitle(
+                      title: "Мои счета",
+                      isExpanded: false,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 1.sw,
+                    height: height / 3.7,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => mypoyfoliyo(
+                        state.accounts[index].iconUrl,
+                        state.accounts[index].token,
+                        state.accounts[index].amount,
+                        "+${Random().nextDouble().toStringAsFixed(2)}%",
+                      ),
+                      itemCount: state.accounts.length,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(13.0.w),
+                    child: const HomePageTitle(
+                      title: "Валюты",
+                      isExpanded: true,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 1.sw,
+                    height: height / 3.7,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => mypoyfoliyotop(
+                        state.currencies[index].iconUrl,
+                        state.currencies[index].token,
+                        state.currencies[index].currentPrice,
+                        "+${Random().nextDouble().toStringAsFixed(2)}%",
+                      ),
+                      itemCount: state.currencies.length,
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
-      ),
-      body: ListView(
-        padding: EdgeInsets.only(right: 15.w),
-        children: [
-          const CusttomStockGainscard(
-            account: "340000",
-            percent: "2,5",
-          ),
-          Padding(
-            padding: EdgeInsets.all(13.0.w),
-            child: const HomePageTitle(
-              title: "Favorites",
-              isExpanded: true,
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              mypoyfoliyotop(
-                  "assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
-              //SizedBox(width: 10.w),
-              mypoyfoliyotop(
-                  "assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.all(13.0.w),
-            child: const HomePageTitle(
-              title: "My Portfolio",
-              isExpanded: false,
-            ),
-          ),
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxHeight: 190),
-            child: CustomScrollView(scrollDirection: Axis.horizontal, slivers: [
-              SliverFillRemaining(
-                hasScrollBody: false,
-                child: Row(
-                  children: [
-                    mypoyfoliyo(
-                        "assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
-                    SizedBox(width: 10.w),
-                    mypoyfoliyo(
-                        "assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
-                    SizedBox(width: 10.w),
-                    mypoyfoliyo(
-                        "assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
-                  ],
-                ),
-              ),
-            ]
-                /*
-              child: 
-              Row(
-                // shrinkWrap: true,
-                // scrollDirection: Axis.horizontal,
-                children: [
-                  mypoyfoliyo(
-                      "assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
-                  SizedBox(width: 10.w),
-                  mypoyfoliyo(
-                      "assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
-                  SizedBox(width: 10.w),
-                  mypoyfoliyo(
-                      "assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
-                ],
-              ),*/
-                ),
-          ),
-        ],
       ),
     );
   }
 
-  Widget mypoyfoliyotop(image, title, stockprice, updown) {
+  Widget mypoyfoliyotop(String image, title, stockprice, updown) {
     return Container(
       margin: EdgeInsets.only(left: width / 20),
       height: height / 3.7,
@@ -163,10 +158,10 @@ class _HomeState extends State<Home> {
         children: [
           Row(
             children: [
-              Padding(
+              image.isNotEmpty ? Padding(
                 padding: EdgeInsets.only(left: width / 20, top: height / 60),
-                child: Image.asset(image, height: height / 20),
-              ),
+                child: Image.network(image, height: height / 20),
+              ) : Container(),
               SizedBox(width: width / 20),
               Column(
                 children: [
@@ -186,7 +181,7 @@ class _HomeState extends State<Home> {
           ),
           SizedBox(height: 10.h),
           Container(
-            child: Text('Тут будет график!!!'),
+            child: Image.asset('assets/images/chart.png'),
             height: 100.h,
             decoration: const BoxDecoration(),
           ),
@@ -198,7 +193,7 @@ class _HomeState extends State<Home> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    stockprice,
+                    stockprice.toString(),
                     style: TextStyle(
                       color: context.colors.black,
                       fontFamily: 'Gilroy_Bold',
@@ -222,11 +217,11 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget mypoyfoliyo(image, title, stockprice, updown) {
+  Widget mypoyfoliyo(String image, title, stockprice, updown) {
     return Container(
       margin: EdgeInsets.only(left: width / 20),
-      height: height / 4.5,
-      width: width / 1.8,
+      height: 1.sh / 4.5,
+      width: 1.sw / 1.8,
       decoration: BoxDecoration(
         color: context.colors.favorites,
         borderRadius: BorderRadius.all(
@@ -237,16 +232,16 @@ class _HomeState extends State<Home> {
         children: [
           Row(
             children: [
-              Padding(
+              image.isNotEmpty ? Padding(
                 padding: EdgeInsets.only(left: width / 20, top: height / 60),
-                child: Image.asset(image, height: height / 15),
-              ),
+                child: Image.network(image, height: height / 15),
+              ) : Container(),
               SizedBox(width: width / 20),
               Column(
                 children: [
                   SizedBox(height: height / 50),
                   Text(
-                    title,
+                    title.toString(),
                     style: TextStyle(
                       color: context.colors.black,
                       fontSize: 18.sp,
@@ -273,7 +268,7 @@ class _HomeState extends State<Home> {
                         fontSize: 13.sp),
                   ),
                   Text(
-                    stockprice,
+                    stockprice.toString(),
                     style: TextStyle(
                       color: context.colors.black,
                       fontFamily: 'Gilroy_Bold',
