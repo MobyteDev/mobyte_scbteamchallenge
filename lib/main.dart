@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobyte_scbteamchallenge/di/locator.dart';
 import 'package:mobyte_scbteamchallenge/navigation/auto_router.gr.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/Auth/login.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/auth/signup.dart';
 import 'package:mobyte_scbteamchallenge/utils/app_colors.dart';
 import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +34,7 @@ class MyApp extends StatelessWidget {
                 textHeightBehavior: const TextHeightBehavior(
                   leadingDistribution: TextLeadingDistribution.even,
                 ),
+                /*
                 child: MaterialApp.router(
                   title: 'Monethochka',
                   debugShowCheckedModeBanner: false,
@@ -41,6 +44,10 @@ class MyApp extends StatelessWidget {
                   ),
                   routerDelegate: _appRouter.delegate(),
                   routeInformationParser: _appRouter.defaultRouteParser(),
+                ),
+                */
+                child: MaterialApp(
+                  home: Login(),
                 ),
               );
             },

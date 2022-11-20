@@ -19,12 +19,12 @@ class CustomAppBar extends PreferredSize {
             centerTitle: true,
             elevation: 0,
             backgroundColor: color,
-            leading: GestureDetector(
-              onTap: () {
-                Get.back();
-              },
-              child: Image.asset("assets/images/back.png", scale: 5),
-            ),
+            // leading: GestureDetector(
+            //   onTap: () {
+            //     Get.back();
+            //   },
+            //   child: Image.asset("assets/images/back.png", scale: 5),
+            // ),
             title: Text(
               txt,
               style: TextStyle(color: titlecolor, fontFamily: 'Gilroy_Bold'),

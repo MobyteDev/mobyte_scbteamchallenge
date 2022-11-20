@@ -35,6 +35,7 @@ class _LoginState extends State<Login> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: height / 10),
               Row(
                 children: [
                   SizedBox(width: width / 15),
@@ -42,19 +43,19 @@ class _LoginState extends State<Login> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        LanguageEn.welcome,
+                        'Добро пожаловать!',
                         style: TextStyle(
                             color: context.colors.black,
                             fontSize: 26.sp,
                             fontFamily: 'Gilroy_Bold'),
                       ),
-                      SizedBox(height: height / 40),
-                      Text(
-                        LanguageEn.youhavebeenmissed,
-                        style: TextStyle(
-                            fontSize: 16.sp, color: context.colors.grey),
-                      ),
-                      SizedBox(height: height / 30),
+                      // SizedBox(height: height / 40),
+                      // Text(
+                      //   LanguageEn.youhavebeenmissed,
+                      //   style: TextStyle(
+                      //       fontSize: 16.sp, color: context.colors.grey),
+                      // ),
+                      SizedBox(height: height / 20),
                       Customtextfild.textField(
                         labletext: LanguageEn.emailadress,
                         focuscolor: context.colors.blue,
@@ -67,40 +68,43 @@ class _LoginState extends State<Login> {
                         w: 300.sp,
                       ),
                       SizedBox(height: height / 30),
-                      // Custompasswordtextfild.textField(
-                      //   labletext: LanguageEn.password,
-                      //   focuscolor: context.colors.blue,
-                      //   preicon: Icons.lock,
-                      //   lablecolor: context.colors.grey,
-                      //   iconcolor: context.colors.prefixicon,
-                      //   textcolor: context.colors.black,
-                      // ),
+                      Customtextfild.textField(
+                        labletext: LanguageEn.password,
+                        focuscolor: context.colors.blue,
+                        preicon: Icons.lock,
+                        lablecolor: context.colors.grey,
+                        iconcolor: context.colors.prefixIcon,
+                        textcolor: context.colors.black,
+                        bordercolor: context.colors.grey,
+                        h: 45.sp,
+                        w: 300.sp,
+                      ),
                       SizedBox(height: height / 30),
                     ],
                   ),
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(
-                        const PhoneNumResetPassword(),
-                      );
-                    },
-                    child: Text(
-                      LanguageEn.forgotpassword,
-                      style: TextStyle(
-                          color: context.colors.blue,
-                          fontSize: 13.5.sp,
-                          fontFamily: 'Gilroy_Medium'),
-                    ),
-                  ),
-                  SizedBox(width: width / 10),
-                ],
-              ),
-              SizedBox(height: height / 20),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.end,
+              //   children: [
+              //     GestureDetector(
+              //       onTap: () {
+              //         Get.to(
+              //           const PhoneNumResetPassword(),
+              //         );
+              //       },
+              //       child: Text(
+              //         LanguageEn.forgotpassword,
+              //         style: TextStyle(
+              //             color: context.colors.blue,
+              //             fontSize: 13.5.sp,
+              //             fontFamily: 'Gilroy_Medium'),
+              //       ),
+              //     ),
+              //     SizedBox(width: width / 10),
+              //   ],
+              // ),
+              // SizedBox(height: height / 30),
               GestureDetector(
                 onTap: () {
                   // Navigator.push(
@@ -112,65 +116,65 @@ class _LoginState extends State<Login> {
                 },
                 child: Button(
                     buttonText: LanguageEn.signin,
-                    buttonTextColor: context.colors.blue,
-                    colorButton: context.colors.white),
+                    buttonTextColor: context.colors.white,
+                    colorButton: context.colors.blue),
               ),
-              SizedBox(height: height / 40),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 27.0, right: 27.0),
-                      child: Divider(
-                        color: context.colors.grey,
-                        height: 50,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    LanguageEn.oR,
-                    style: TextStyle(
-                      color: context.colors.grey,
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 27.0, right: 27.0),
-                      child: Divider(
-                        color: context.colors.grey,
-                        height: 50,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: height / 50),
-              googlelogin(),
-              SizedBox(height: height / 6.5),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    LanguageEn.donthaveanaccount,
-                    style: TextStyle(
-                        color: context.colors.grey,
-                        fontSize: 15.sp,
-                        fontFamily: 'Gilroy_Medium'),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(const SignUp());
-                    },
-                    child: Text(
-                      LanguageEn.signup,
-                      style: TextStyle(
-                          color: context.colors.blue,
-                          fontSize: 15.sp,
-                          fontFamily: 'Gilroy_Bold'),
-                    ),
-                  ),
-                ],
-              )
+              // SizedBox(height: height / 40),
+              // Row(
+              //   children: <Widget>[
+              //     Expanded(
+              //       child: Container(
+              //         margin: const EdgeInsets.only(left: 27.0, right: 27.0),
+              //         child: Divider(
+              //           color: context.colors.grey,
+              //           height: 50,
+              //         ),
+              //       ),
+              //     ),
+              //     Text(
+              //       LanguageEn.oR,
+              //       style: TextStyle(
+              //         color: context.colors.grey,
+              //       ),
+              //     ),
+              //     Expanded(
+              //       child: Container(
+              //         margin: const EdgeInsets.only(left: 27.0, right: 27.0),
+              //         child: Divider(
+              //           color: context.colors.grey,
+              //           height: 50,
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              // SizedBox(height: height / 50),
+              // googlelogin(),
+              // SizedBox(height: height / 6.5),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     Text(
+              //       LanguageEn.donthaveanaccount,
+              //       style: TextStyle(
+              //           color: context.colors.grey,
+              //           fontSize: 15.sp,
+              //           fontFamily: 'Gilroy_Medium'),
+              //     ),
+              //     GestureDetector(
+              //       onTap: () {
+              //         Get.to(const SignUp());
+              //       },
+              //       child: Text(
+              //         LanguageEn.signup,
+              //         style: TextStyle(
+              //             color: context.colors.blue,
+              //             fontSize: 15.sp,
+              //             fontFamily: 'Gilroy_Bold'),
+              //       ),
+              //     ),
+              //   ],
+              // )
             ],
           ),
         ),
