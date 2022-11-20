@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/button.dart';
-import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/custom_appbar.dart';
+import 'package:mobyte_scbteamchallenge/presentation/widgets/app_bar/custom_appbar.dart';
+import 'package:mobyte_scbteamchallenge/presentation/widgets/buttons/button.dart';
+
 import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
 import 'package:mobyte_scbteamchallenge/utils/sizes.dart';
 
@@ -22,6 +22,7 @@ class _BuyStockState extends State<BuyStock> {
       builder: (_, __) => Scaffold(
         backgroundColor: context.colors.white,
         appBar: CustomAppBar(
+          true,
           context.colors.white,
           "Buy Stock",
           context.colors.black,

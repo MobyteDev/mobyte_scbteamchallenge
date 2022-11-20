@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/button.dart';
-import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/castom_textfield.dart';
-import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/custom_appbar.dart';
+import 'package:mobyte_scbteamchallenge/presentation/widgets/app_bar/custom_appbar.dart';
+import 'package:mobyte_scbteamchallenge/presentation/widgets/textfields/castom_textfield.dart';
 import 'package:mobyte_scbteamchallenge/utils/enstring.dart';
 import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
 import 'package:mobyte_scbteamchallenge/utils/sizes.dart';
+
+import '../../widgets/buttons/button.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class _SignUpState extends State<SignUp> {
     return ScreenUtilInit(
       builder: (_, __) => Scaffold(
         backgroundColor: context.colors.white,
-        appBar: CustomAppBar(context.colors.white, "", context.colors.black,
+        appBar: CustomAppBar(true, context.colors.white, "", context.colors.black,
             height: height / 15),
         body: SingleChildScrollView(
           child: Column(

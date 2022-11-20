@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/button.dart';
-import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/custom_appbar.dart';
+import 'package:mobyte_scbteamchallenge/presentation/widgets/app_bar/custom_appbar.dart';
+import 'package:mobyte_scbteamchallenge/presentation/widgets/buttons/button.dart';
 import 'package:mobyte_scbteamchallenge/utils/enstring.dart';
 import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
 import 'package:mobyte_scbteamchallenge/utils/sizes.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Pin extends StatefulWidget {
   const Pin({Key? key}) : super(key: key);
@@ -24,7 +21,7 @@ class _PinState extends State<Pin> {
     return ScreenUtilInit(
       builder: (_, __) => Scaffold(
         backgroundColor: context.colors.white,
-        appBar: CustomAppBar(
+        appBar: CustomAppBar(true,
           context.colors.white,
           "",
           context.colors.black,

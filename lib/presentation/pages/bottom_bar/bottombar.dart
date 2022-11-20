@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/home.dart';
-import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/profile.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/profile/profile_page/profile.dart';
+
 import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/stock_exchange_tabs/selectstocks.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/stockexchange.dart';
+
 import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
 import 'package:mobyte_scbteamchallenge/utils/sizes.dart';
-import 'package:provider/provider.dart';
 
 class BottomHome extends StatefulWidget {
   const BottomHome({Key? key}) : super(key: key);
@@ -43,7 +44,7 @@ class _BottomHomeState extends State<BottomHome> {
                 icon: Image.asset("assets/images/Home-Filled.png",
                     color: _selectedIndex == 0
                         ? context.colors.blue
-                        :context.colors.grey,
+                        : context.colors.grey,
                     height: height / 35),
                 label: ''),
             BottomNavigationBarItem(

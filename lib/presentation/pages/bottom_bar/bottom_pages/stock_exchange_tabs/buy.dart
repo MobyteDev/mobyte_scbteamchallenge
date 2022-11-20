@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/stock_exchange_tabs/selectcrypto.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/stock_exchange_tabs/selectstocks.dart';
-import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/button.dart';
+import 'package:mobyte_scbteamchallenge/presentation/widgets/buttons/button.dart';
 import 'package:mobyte_scbteamchallenge/utils/enstring.dart';
 import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
 import 'package:mobyte_scbteamchallenge/utils/sizes.dart';

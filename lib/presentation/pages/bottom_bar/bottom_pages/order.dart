@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/custom_appbar.dart';
+import 'package:mobyte_scbteamchallenge/presentation/widgets/app_bar/custom_appbar.dart';
 import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
 import 'package:mobyte_scbteamchallenge/utils/sizes.dart';
 import 'package:provider/provider.dart';
@@ -49,7 +49,7 @@ class _OrderState extends State<Order> with SingleTickerProviderStateMixin {
     return ScreenUtilInit(
       builder: (_, __) => Scaffold(
         backgroundColor: context.colors.white,
-        appBar: CustomAppBar(context.colors.white, "Order", context.colors.black,
+        appBar: CustomAppBar(true, context.colors.white, "Order", context.colors.black,
             height: height / 15),
      
       ),

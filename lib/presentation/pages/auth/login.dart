@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/auth/phone_num_reset_password.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/auth/signup.dart';
-import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/button.dart';
-import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/castom_textfield.dart';
-import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/custom_appbar.dart';
+import 'package:mobyte_scbteamchallenge/presentation/widgets/app_bar/custom_appbar.dart';
+import 'package:mobyte_scbteamchallenge/presentation/widgets/buttons/button.dart';
+import 'package:mobyte_scbteamchallenge/presentation/widgets/textfields/castom_textfield.dart';
 import 'package:mobyte_scbteamchallenge/utils/enstring.dart';
 import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
 import 'package:mobyte_scbteamchallenge/utils/sizes.dart';
@@ -25,7 +25,7 @@ class _LoginState extends State<Login> {
     return ScreenUtilInit(
       builder: (_, __) => Scaffold(
         backgroundColor: context.colors.white,
-        appBar: CustomAppBar(
+        appBar: CustomAppBar(true,
           context.colors.white,
           "",
           context.colors.black,
