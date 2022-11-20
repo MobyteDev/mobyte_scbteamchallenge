@@ -28,12 +28,6 @@ class _SelectStocksState extends State<SelectStocks> {
           preferredSize: Size.fromHeight(70.sp),
           // here the desired height
           child: AppBar(
-            leading:  GestureDetector(
-              onTap: () {
-                Get.back();
-              },
-              child: Image.asset("assets/images/back.png", scale: 5),
-            ),
             actions: [
               // Padding(
               //   padding: const EdgeInsets.all(8.0),

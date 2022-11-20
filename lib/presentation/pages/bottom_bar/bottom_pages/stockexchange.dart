@@ -5,7 +5,6 @@ import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pag
 import 'package:mobyte_scbteamchallenge/utils/enstring.dart';
 import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
 import 'package:mobyte_scbteamchallenge/utils/sizes.dart';
-import 'package:provider/provider.dart';
 import 'stock_exchange_tabs/sell.dart';
 
 class StockExchange extends StatefulWidget {
@@ -29,12 +28,6 @@ class _StockExchangeState extends State<StockExchange>
           backgroundColor: context.colors.white,
           appBar: AppBar(
             centerTitle: true,
-            leading: GestureDetector(
-              onTap: () {
-                Get.back();
-              },
-              child: Image.asset("assets/images/back.png", scale: 6),
-            ),
             title: Text(
               LanguageEn.exchange,
               style: TextStyle(
