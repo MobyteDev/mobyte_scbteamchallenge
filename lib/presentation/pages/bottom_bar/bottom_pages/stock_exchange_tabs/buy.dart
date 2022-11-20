@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/stock_exchange_tabs/exchange_free_widget.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/stock_exchange_tabs/exchange_stocks_buy_widget.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/stock_exchange_tabs/selectcrypto.dart';
-import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/stock_exchange_tabs/selectstocks.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/market/selectstocks.dart';
 import 'package:mobyte_scbteamchallenge/presentation/widgets/buttons/button.dart';
 import 'package:mobyte_scbteamchallenge/utils/enstring.dart';
 import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
