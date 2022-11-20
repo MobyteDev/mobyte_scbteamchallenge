@@ -12,6 +12,7 @@ class Customtextfild {
     bordercolor,
     h,
     w,
+    controller,
   }) {
     return ScreenUtilInit(
       builder: (_, __) => Container(
@@ -19,6 +20,7 @@ class Customtextfild {
         height: h,
         width: w,
         child: TextField(
+          controller: controller,
           style: TextStyle(color: textcolor),
           onChanged: (value) {},
           // obscureText: hidePassword, //show/hide password
