@@ -46,6 +46,8 @@ dependencies:
   dio: ^4.0.6
   pretty_dio_logger: ^1.1.1
   retrofit: ^3.0.1+1
+  json_serializable: ^6.5.4
+  web_socket_channel: ^2.2.0
 
   # reactive programming
   rxdart: ^0.26.0

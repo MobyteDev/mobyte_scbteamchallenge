@@ -141,9 +141,9 @@ class LanguageEn {
 
   static String get accept => "Accept";
 
-  static String get gocrypto => "GoCrypto";
+  static String get gocrypto => "Монеточка";
 
-  static String get buildingtrustinthecrypto => "Building trust in the Crypto";
+  static String get buildingtrustinthecrypto => "Валютные операции";
 
   static String get favorites => "Favorites";
 
