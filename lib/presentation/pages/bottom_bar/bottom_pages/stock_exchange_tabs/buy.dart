@@ -36,7 +36,7 @@ class _BuyState extends State<Buy> {
           SizedBox(height: height / 50),
           Padding(
             padding: const EdgeInsets.only(left: 13, right: 13),
-            child: exchangefree(),
+            child: MyExchangeStocksBuyWidget(curRatio: 1.24),
           ),
           SizedBox(height: height / 25),
           Row(
