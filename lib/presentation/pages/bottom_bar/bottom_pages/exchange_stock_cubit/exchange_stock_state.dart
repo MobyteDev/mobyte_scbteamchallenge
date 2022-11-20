@@ -1,7 +1,12 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+abstract class ExchangeStockState {}
 
-class ExchangeStockCubit extends Cubit<int> {
-  ExchangeStockCubit() : super(0);
+class ExchangeStockInit implements ExchangeStockState {}
 
-  void computeMoney(double sum) {}
+class ExchangeStockComputedSucces implements ExchangeStockState {
+  final double recieved;
+  ExchangeStockComputedSucces({required this.recieved});
 }
+
+class ExchangeStockBuySucces implements ExchangeStockState {}
+
+class ExchangeStockBuyFailed implements ExchangeStockState {}

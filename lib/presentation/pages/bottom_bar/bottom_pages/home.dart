@@ -24,7 +24,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;
-    width = MediaQuery.of(context).size.width;
+    width = MediaQuery.of(context).size.width - 90;
     return Scaffold(
       backgroundColor: context.colors.white,
       appBar: PreferredSize(
@@ -75,7 +75,8 @@ class _HomeState extends State<Home> {
           ),
         ),
       ),
-      body: Column(
+      body: ListView(
+        padding: EdgeInsets.only(right: 15.w),
         children: [
           const CusttomStockGainscard(
             account: "340000",
@@ -88,6 +89,16 @@ class _HomeState extends State<Home> {
               isExpanded: true,
             ),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              mypoyfoliyotop(
+                  "assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
+              //SizedBox(width: 10.w),
+              mypoyfoliyotop(
+                  "assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
+            ],
+          ),
           Padding(
             padding: EdgeInsets.all(13.0.w),
             child: const HomePageTitle(
@@ -95,26 +106,117 @@ class _HomeState extends State<Home> {
               isExpanded: false,
             ),
           ),
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxHeight: 190),
+            child: CustomScrollView(scrollDirection: Axis.horizontal, slivers: [
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Row(
+                  children: [
+                    mypoyfoliyo(
+                        "assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
+                    SizedBox(width: 10.w),
+                    mypoyfoliyo(
+                        "assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
+                    SizedBox(width: 10.w),
+                    mypoyfoliyo(
+                        "assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
+                  ],
+                ),
+              ),
+            ]
+                /*
+              child: 
+              Row(
+                // shrinkWrap: true,
+                // scrollDirection: Axis.horizontal,
+                children: [
+                  mypoyfoliyo(
+                      "assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
+                  SizedBox(width: 10.w),
+                  mypoyfoliyo(
+                      "assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
+                  SizedBox(width: 10.w),
+                  mypoyfoliyo(
+                      "assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
+                ],
+              ),*/
+                ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget mypoyfoliyotop(image, title, stockprice, updown) {
+    return Container(
+      margin: EdgeInsets.only(left: width / 20),
+      height: height / 3.7,
+      width: width / 1.8,
+      decoration: BoxDecoration(
+        color: context.colors.favorites,
+        borderRadius: BorderRadius.all(
+          Radius.circular(20.sp),
+        ),
+      ),
+      child: Column(
+        children: [
           Row(
             children: [
-              mypoyfoliyo("assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
-              SizedBox(width: 15.w),
-              mypoyfoliyo("assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
+              Padding(
+                padding: EdgeInsets.only(left: width / 20, top: height / 60),
+                child: Image.asset(image, height: height / 20),
+              ),
+              SizedBox(width: width / 20),
+              Column(
+                children: [
+                  SizedBox(height: height / 50),
+                  Text(
+                    title,
+                    style: TextStyle(
+                      color: context.colors.black,
+                      fontSize: 14.sp,
+                      fontFamily: 'Gilroy_Bold',
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
-          SingleChildScrollView(
-            child: Row(
-              // shrinkWrap: true,
-              // scrollDirection: Axis.horizontal,
-              children: [
-                mypoyfoliyo(
-                    "assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
-                SizedBox(width: 15.w),
-                mypoyfoliyo(
-                    "assets/images/Bitcoin.png", "BTC", "20,10", "+0,2%"),
-              ],
-            ),
+          SizedBox(height: 10.h),
+          Container(
+            child: Text('Тут будет график!!!'),
+            height: 100.h,
+            decoration: const BoxDecoration(),
           ),
+          SizedBox(height: 10.h),
+          Row(
+            children: [
+              SizedBox(width: width / 25),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    stockprice,
+                    style: TextStyle(
+                      color: context.colors.black,
+                      fontFamily: 'Gilroy_Bold',
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              const Spacer(),
+              Text(
+                updown,
+                style:
+                    TextStyle(color: const Color(0xff22C36B), fontSize: 13.sp),
+              ),
+              SizedBox(width: width / 25),
+            ],
+          )
         ],
       ),
     );
@@ -149,6 +251,7 @@ class _HomeState extends State<Home> {
                       color: context.colors.black,
                       fontSize: 18.sp,
                       fontFamily: 'Gilroy_Bold',
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -172,9 +275,11 @@ class _HomeState extends State<Home> {
                   Text(
                     stockprice,
                     style: TextStyle(
-                        color: context.colors.black,
-                        fontFamily: 'Gilroy_Bold',
-                        fontSize: 21.sp),
+                      color: context.colors.black,
+                      fontFamily: 'Gilroy_Bold',
+                      fontSize: 21.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
