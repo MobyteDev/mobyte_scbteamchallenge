@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:mobyte_scbteamchallenge/cubit/auth_cubit.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/auth/phone_num_reset_password.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/auth/signup.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/button.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/castom_textfield.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/common_widgets/custom_appbar.dart';
 import 'package:mobyte_scbteamchallenge/utils/enstring.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
 import 'package:mobyte_scbteamchallenge/utils/sizes.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
-
   @override
   State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
+  TextEditingController _loginController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;
@@ -49,15 +53,9 @@ class _LoginState extends State<Login> {
                             fontSize: 26.sp,
                             fontFamily: 'Gilroy_Bold'),
                       ),
-                      // SizedBox(height: height / 40),
-                      // Text(
-                      //   LanguageEn.youhavebeenmissed,
-                      //   style: TextStyle(
-                      //       fontSize: 16.sp, color: context.colors.grey),
-                      // ),
                       SizedBox(height: height / 20),
                       Customtextfild.textField(
-                        labletext: LanguageEn.emailadress,
+                        labletext: 'Адрес электронной почты',
                         focuscolor: context.colors.blue,
                         preicon: Icons.email,
                         lablecolor: context.colors.grey,
@@ -66,10 +64,11 @@ class _LoginState extends State<Login> {
                         bordercolor: context.colors.grey,
                         h: 45.sp,
                         w: 300.sp,
+                        controller: _loginController,
                       ),
                       SizedBox(height: height / 30),
                       Customtextfild.textField(
-                        labletext: LanguageEn.password,
+                        labletext: 'Пароль',
                         focuscolor: context.colors.blue,
                         preicon: Icons.lock,
                         lablecolor: context.colors.grey,
@@ -78,134 +77,48 @@ class _LoginState extends State<Login> {
                         bordercolor: context.colors.grey,
                         h: 45.sp,
                         w: 300.sp,
+                        controller: _passwordController,
                       ),
                       SizedBox(height: height / 30),
                     ],
                   ),
                 ],
               ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.end,
-              //   children: [
-              //     GestureDetector(
-              //       onTap: () {
-              //         Get.to(
-              //           const PhoneNumResetPassword(),
-              //         );
-              //       },
-              //       child: Text(
-              //         LanguageEn.forgotpassword,
-              //         style: TextStyle(
-              //             color: context.colors.blue,
-              //             fontSize: 13.5.sp,
-              //             fontFamily: 'Gilroy_Medium'),
-              //       ),
-              //     ),
-              //     SizedBox(width: width / 10),
-              //   ],
-              // ),
-              // SizedBox(height: height / 30),
-              GestureDetector(
-                onTap: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => const BottomHome(),
-                  //   ),
-                  // );
+              BlocConsumer<AuthCubit, AuthState>(
+                listener: (context, state) {
+                  if (state is AuthSuccess) {
+                    // TODO Прописать переход!!
+                  }
                 },
-                child: Button(
-                    buttonText: LanguageEn.signin,
-                    buttonTextColor: context.colors.white,
-                    colorButton: context.colors.blue),
+                builder: (context, state) {
+                  if (state is AuthError) {
+                    return const Text(
+                      'Неправильный логин или пароль',
+                      style: TextStyle(fontSize: 17, color: Colors.red),
+                    );
+                  } else if (state is AuthInProgress) {
+                    return const CircularProgressIndicator(color: Colors.blue);
+                  } else {
+                    return const Text('');
+                  }
+                },
               ),
-              // SizedBox(height: height / 40),
-              // Row(
-              //   children: <Widget>[
-              //     Expanded(
-              //       child: Container(
-              //         margin: const EdgeInsets.only(left: 27.0, right: 27.0),
-              //         child: Divider(
-              //           color: context.colors.grey,
-              //           height: 50,
-              //         ),
-              //       ),
-              //     ),
-              //     Text(
-              //       LanguageEn.oR,
-              //       style: TextStyle(
-              //         color: context.colors.grey,
-              //       ),
-              //     ),
-              //     Expanded(
-              //       child: Container(
-              //         margin: const EdgeInsets.only(left: 27.0, right: 27.0),
-              //         child: Divider(
-              //           color: context.colors.grey,
-              //           height: 50,
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
-              // SizedBox(height: height / 50),
-              // googlelogin(),
-              // SizedBox(height: height / 6.5),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     Text(
-              //       LanguageEn.donthaveanaccount,
-              //       style: TextStyle(
-              //           color: context.colors.grey,
-              //           fontSize: 15.sp,
-              //           fontFamily: 'Gilroy_Medium'),
-              //     ),
-              //     GestureDetector(
-              //       onTap: () {
-              //         Get.to(const SignUp());
-              //       },
-              //       child: Text(
-              //         LanguageEn.signup,
-              //         style: TextStyle(
-              //             color: context.colors.blue,
-              //             fontSize: 15.sp,
-              //             fontFamily: 'Gilroy_Bold'),
-              //       ),
-              //     ),
-              //   ],
-              // )
+              GestureDetector(
+                onTap: () {},
+                child: GestureDetector(
+                  onTap: () {
+                    final _login = _loginController.text;
+                    final _password = _passwordController.text;
+                    context.read<AuthCubit>().login(_login, _password);
+                  },
+                  child: Button(
+                      buttonText: LanguageEn.signin,
+                      buttonTextColor: context.colors.white,
+                      colorButton: context.colors.blue),
+                ),
+              ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget googlelogin() {
-    return Center(
-      child: Container(
-        height: height / 15,
-        width: width / 1.1,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(
-            Radius.circular(15.sp),
-          ),
-          border: Border.all(color: context.colors.grey),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset("assets/images/google.png", height: height / 25),
-            SizedBox(width: width / 25),
-            Text(
-              LanguageEn.continuewithgoogle,
-              style: TextStyle(
-                  color: context.colors.black,
-                  fontSize: 15.sp,
-                  fontFamily: 'Gilroy_Bold'),
-            ),
-          ],
         ),
       ),
     );

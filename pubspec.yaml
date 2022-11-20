@@ -66,6 +66,10 @@ dependencies:
   get_storage: ^2.0.3
   flutter_launcher_icons: ^0.9.2
   calendar_calendar: ^1.0.0
+  dio: ^4.0.6
+  pretty_dio_logger: ^1.1.1
+  retrofit: ^3.0.1+1
+  flutter_bloc: ^8.1.1
 
 
 dev_dependencies:
