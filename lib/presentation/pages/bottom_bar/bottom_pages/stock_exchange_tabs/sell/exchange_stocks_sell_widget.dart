@@ -1,11 +1,21 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mobyte_scbteamchallenge/models/currency_model/currency_model.dart';
+import 'package:mobyte_scbteamchallenge/navigation/auto_router.gr.dart';
+import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/stock_exchange_tabs/sell/select_currency_pay_page.dart';
 import 'package:mobyte_scbteamchallenge/utils/enstring.dart';
 import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
 import 'package:mobyte_scbteamchallenge/utils/sizes.dart';
 
 class ExchangeStocksSellWidget extends StatelessWidget {
-  const ExchangeStocksSellWidget({Key? key}) : super(key: key);
+  final CurrencyModel currency1;
+  final CurrencyModel currency2;
+  const ExchangeStocksSellWidget({
+    Key? key,
+    required this.currency1,
+    required this.currency2,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,26 +56,38 @@ class ExchangeStocksSellWidget extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: width / 3),
-                  Image.asset("assets/images/usd.png", height: height / 30),
-                  SizedBox(width: width / 50),
-                  Text(
-                    LanguageEn.usd,
-                    style: TextStyle(
-                        color: context.colors.black,
-                        fontSize: 13.sp,
-                        fontFamily: 'Gilroy_Bold'),
+                  GestureDetector(
+                    onTap: () {
+                      context.router.navigate(
+                        const SelectCurrencyPayRoute(),
+                      );
+                    },
+                    child: Row(
+                      children: [
+                        Image.asset("assets/images/usd.png",
+                            height: height / 30),
+                        SizedBox(width: width / 50),
+                        Text(
+                          currency1.shortName,
+                          style: TextStyle(
+                              color: context.colors.black,
+                              fontSize: 13.sp,
+                              fontFamily: 'Gilroy_Bold'),
+                        ),
+                        Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                          color: context.colors.grey,
+                        )
+                      ],
+                    ),
                   ),
-                  Icon(
-                    Icons.keyboard_arrow_down_rounded,
-                    color: context.colors.grey,
-                  )
                 ],
               ),
               SizedBox(height: height / 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
+                  const Expanded(
                     child: Divider(
                       indent: 20.0,
                       endIndent: 10.0,
@@ -73,7 +95,7 @@ class ExchangeStocksSellWidget extends StatelessWidget {
                     ),
                   ),
                   Image.asset("assets/images/data.png", height: height / 40),
-                  Expanded(
+                  const Expanded(
                     child: Divider(
                       indent: 10.0,
                       endIndent: 20.0,
@@ -108,19 +130,31 @@ class ExchangeStocksSellWidget extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: width / 2.5),
-                  Image.asset("assets/images/RBL.jpg", height: height / 30),
-                  SizedBox(width: width / 50),
-                  Text(
-                    LanguageEn.btc,
-                    style: TextStyle(
-                        color: context.colors.black,
-                        fontSize: 13.sp,
-                        fontFamily: 'Gilroy_Bold'),
+                  GestureDetector(
+                    onTap: () {
+                      context.router.navigate(
+                        const SelectCurrencyPayRoute(),
+                      );
+                    },
+                    child: Row(
+                      children: [
+                        Image.asset("assets/images/RBL.jpg",
+                            height: height / 30),
+                        SizedBox(width: width / 50),
+                        Text(
+                          currency2.shortName,
+                          style: TextStyle(
+                              color: context.colors.black,
+                              fontSize: 13.sp,
+                              fontFamily: 'Gilroy_Bold'),
+                        ),
+                        Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                          color: context.colors.grey,
+                        ),
+                      ],
+                    ),
                   ),
-                  Icon(
-                    Icons.keyboard_arrow_down_rounded,
-                    color: context.colors.grey,
-                  )
                 ],
               ),
               SizedBox(height: height / 30),

@@ -74,15 +74,6 @@ class _SelectStocksState extends State<SelectStocks> {
                             w: 310.sp),
                       ),
                       SizedBox(height: height / 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          marketrate(LanguageEn.marketcap, "\$2.5B", "+6,15%"),
-                          marketrate(LanguageEn.volume, "\$219B", "+1,15%"),
-                          marketrate(
-                              LanguageEn.btcdominance, "\$60%", "+0,45%"),
-                        ],
-                      ),
                       SizedBox(height: height / 20),
                       SizedBox(
                         height: height / 2,
@@ -103,7 +94,6 @@ class _SelectStocksState extends State<SelectStocks> {
                               .toList(),
                         ),
                       ),
-                    
                     ],
                   ),
                 ),

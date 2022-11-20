@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:mobyte_scbteamchallenge/di/locator.dart';
 
-import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/profile/models/enum_document_check.dart';
 import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pages/profile/profile_page/bloc/profile_page_bloc.dart';
 import 'package:mobyte_scbteamchallenge/presentation/widgets/notifications/document_reminder.dart';
 import 'package:mobyte_scbteamchallenge/presentation/widgets/options_lists/value_element.dart';

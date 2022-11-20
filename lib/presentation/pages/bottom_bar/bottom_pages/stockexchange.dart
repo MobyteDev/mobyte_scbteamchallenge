@@ -7,7 +7,7 @@ import 'package:mobyte_scbteamchallenge/presentation/pages/bottom_bar/bottom_pag
 import 'package:mobyte_scbteamchallenge/utils/enstring.dart';
 import 'package:mobyte_scbteamchallenge/utils/notifier_color.dart';
 import 'package:mobyte_scbteamchallenge/utils/sizes.dart';
-import 'stock_exchange_tabs/sell.dart';
+import 'stock_exchange_tabs/sell/sell.dart';
 
 class StockExchange extends StatefulWidget {
   const StockExchange({Key? key}) : super(key: key);

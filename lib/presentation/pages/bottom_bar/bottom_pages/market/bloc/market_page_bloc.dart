@@ -15,7 +15,7 @@ class MarketPageBloc extends Bloc<MarketPageEvent, MarketPageState> {
             listCurrency: [
               CurrencyModel(
                   name: "Etherium",
-                  shortName: "ETH",
+                  shortName: "BTC",
                   percent: "10%",
                   value: "\$127.3",
                   isGrowing: true),
